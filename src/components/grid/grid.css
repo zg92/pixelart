@@ -1,0 +1,12 @@
+.grid-wrapper {
+    display: grid;
+    grid-template-columns: repeat(6, 16.67%); 
+    grid-template-rows: repeat(6, 16.6%); 
+}
+
+.gridItem {
+    border: 1px solid black;
+    height: 100px;
+    width: 100px;
+    cursor: pointer;
+}
