@@ -4,8 +4,10 @@ import './canvas-wrapper.css'
 
 const CanvasWrapper = () => {
     return (
+        <div className='grid-ui-wrapper'>
         <div className='canvas-outer'>
            <Grid />
+        </div>
         </div>
     )
 }

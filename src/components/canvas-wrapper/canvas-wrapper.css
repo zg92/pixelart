@@ -1,8 +1,13 @@
 .canvas-outer {
-    /* border: 2px solid; */
+    display: flex;
     height: 600px;
     width: 600px;
-    margin: auto;
-    margin-top: 10%;
+    justify-content: center;
+}
+
+.grid-ui-wrapper {
+    width: 70%;
+    display: flex; 
+   justify-content: center ;
 }
 

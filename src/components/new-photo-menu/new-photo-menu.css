@@ -1,0 +1,26 @@
+.new-photo-menu-wrapper {
+width: 600px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+width: 70%;
+}
+
+.new-photo-input-label {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.new-photo-input-dimensions {
+    margin-bottom: 15px;
+    height: 1.5em;
+}
+
+
+.button-menu {
+    width: 20%;
+    padding: 10px;
+
+}
+
