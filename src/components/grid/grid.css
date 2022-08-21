@@ -1,20 +1,19 @@
 .grid-wrapper {
     display: grid;
+    width: 600px;
+    height: 600px;
+    display: relative;
+    position: absolute;
+    top: 0;
 }
 
 .gridItem {
-    border: 1px solid black;
     cursor: pointer;
-    z-index: 2;
-    opacity: 75%;
 }
 
-.img-overlay {
-    position: absolute;
-    z-index: 1;
-    width: 600px;
-    height: 600px;
-    
+.grid-image-wrapper {
+    position: relative;
 }
+
 
 

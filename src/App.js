@@ -7,9 +7,7 @@ import TopBar from './components/top-bar/top-bar';
 import { useContext, useEffect, useState } from 'react';
 import NewPhotoMenu from './components/new-photo-menu/new-photo-menu';
 import { ShowPhotoMenuContext } from './context/show-photo-menu.context';
-import ShowPhotoMenu from './components/show-photo-menu/show-photo-menu';
-
-
+import UploadPhotoMenu from './components/upload-photo-menu/upload-photo-menu';
 
 function App() {
 
@@ -18,14 +16,10 @@ function App() {
 
   const menuDirectory = {
     'new': <NewPhotoMenu setMenuSelect={setMenuSelect}/>,
-    'show': <ShowPhotoMenu setMenuSelect={setMenuSelect}/>,
+    'show': <UploadPhotoMenu setMenuSelect={setMenuSelect}/>,
     'canvas': <CanvasWrapper />
   }
 
-  console.log(menuDirectory[menuSelect])
-
-
- 
   return (
     <div className="App">
       <TopBar />

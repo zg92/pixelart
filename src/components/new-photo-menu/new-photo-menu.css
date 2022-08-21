@@ -1,5 +1,4 @@
 .new-photo-menu-wrapper {
-width: 600px;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -21,6 +20,11 @@ width: 70%;
 .button-menu {
     width: 20%;
     padding: 10px;
+}
 
+.show-photo-button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 

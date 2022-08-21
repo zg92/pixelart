@@ -1,10 +1,10 @@
 import './canvas-options.css'
 import { ShowPhotoMenuContext } from '../../context/show-photo-menu.context'
-import { useContext } from 'react'
+import { useContext, useEffect} from 'react'
 
 const CanvasOptions = ({menuSelect, setMenuSelect}) => {
 
-  const {showPhotoMenuState, setShowPhotoMenuState} = useContext(ShowPhotoMenuContext)
+  const {photoMenuState, setPhotoMenuState} = useContext(ShowPhotoMenuContext)
 
   const menuToggle = (e) => {
     setMenuSelect(e.target.value)
@@ -12,9 +12,8 @@ const CanvasOptions = ({menuSelect, setMenuSelect}) => {
   }
 
   const activateOverlay = () => {
-    showPhotoMenuState ? setShowPhotoMenuState(false) : setShowPhotoMenuState(true)
+    photoMenuState ? setPhotoMenuState(false) : setPhotoMenuState(true)
   }
-
 
   return (
     <div className='option-wrapper'>

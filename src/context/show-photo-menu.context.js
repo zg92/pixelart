@@ -1,13 +1,23 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import mario from '../assets/mario.png'
 
 export const ShowPhotoMenuContext = createContext({
-    showPhotoMenuState:null, 
-    setShowPhotoMenuState:null
+    photoMenuState:null, 
+    setPhotoMenuState:null,
+    currentPhoto: null,
+    setCurrentPhoto:null,
+    uploadedPhotoPosition:null,
+    setUploadedPhotoPosition: null,
+    uploadedPhotoSize: null,
+    setUploadedPhotoSize: null,
 })
 
 export const ShowPhotoMenuContextProvider = ({children}) => {
-    const [showPhotoMenuState, setShowPhotoMenuState] = useState(false)
-    const value = {showPhotoMenuState, setShowPhotoMenuState}
+    const [photoMenuState, setPhotoMenuState] = useState(true)
+    const [currentPhoto, setCurrentPhoto] = useState(mario)
+    const [uploadedPhotoPosition, setUploadedPhotoPosition] = useState({leftPosition:null, topPosition:null})
+    const [uploadedPhotoSize, setUploadedPhotoSize] = useState('0')
+    const value = {photoMenuState, setPhotoMenuState, uploadedPhotoSize, setUploadedPhotoSize, currentPhoto, setCurrentPhoto, uploadedPhotoPosition, setUploadedPhotoPosition}
 
     return <ShowPhotoMenuContext.Provider value = {value}>{children}</ShowPhotoMenuContext.Provider>
 }
