@@ -8,6 +8,8 @@ import { ShowHideImageContext } from "../../../../context/show-hide-image.contex
 import useWindowDimensions from "../../../../customHooks/getWindowWidth";
 import mushroom from "../../../../assets/mushroom.png";
 import "./upload-canvas-buttons.css";
+import SliderInput from "../../../utility-components/slider-input/slider-input";
+import Button from "../../../utility-components/button/button";
 
 const UploadCanvasButtons = forwardRef(
   ({ showGridOverlay, setShowGridOverlay }, ref) => {
@@ -63,16 +65,19 @@ const UploadCanvasButtons = forwardRef(
         ref={ref}
         style={{ width: gridWidth }}
       >
-        <div className="upload-button-wrapper">
-          Upload New Trace Image
+        <Button
+          className="upload-button-wrapper"
+          label={"Upload New Trace Image"}
+        >
           <input
             className="upload-button upload-file"
             type="file"
             onChange={setSamplePhoto}
           />
-        </div>
-        <div
+        </Button>
+        <Button
           className="upload-button"
+          label={"Save Uploaded Trace Image"}
           onClick={
             samplePhotoUpload === mushroom ||
             !samplePhotoUpload ||
@@ -87,45 +92,37 @@ const UploadCanvasButtons = forwardRef(
                 ? "grey"
                 : "#E29578",
           }}
-        >
-          Save Uploaded Trace Image
-        </div>
+        />
 
-        <div className="upload-button" onClick={showGrid}>
-          {showGridOverlay ? "Show" : "Hide"} Grid Overlay
-        </div>
-
-        <div
+        <Button
           className="upload-button"
+          onClick={showGrid}
+          label={showGridOverlay ? "Show Grid Overlay" : "Hide Grid Overlay"}
+        />
+
+        <Button
+          className="upload-button"
+          label={"Save and Return to Draw"}
           onClick={() => {
             menuToggle("draw");
           }}
-        >
-          Save and Return to Draw
-        </div>
+        />
 
-        <div className="slider-wrapper">
-          <span className="slider-label">Adjust Image Size</span>
-          <input
-            type="range"
-            min="-3"
-            max="3"
-            value={photoSize}
-            className="slider"
-            onChange={adjustImageSize}
-          />
-        </div>
-        <div className="slider-wrapper">
-          <span className="slider-label">Adjust Grid Size</span>
-          <input
-            type="range"
-            min="0"
-            max="19"
-            value={dimension}
-            className="slider"
-            onChange={adjustGridSize}
-          />
-        </div>
+        <SliderInput
+          label={"Adjust Image Size"}
+          min={-3}
+          max={3}
+          value={photoSize}
+          functionality={adjustImageSize}
+        />
+
+        <SliderInput
+          label={"Adjust Grid Size"}
+          min={0}
+          max={19}
+          value={dimension}
+          functionality={adjustGridSize}
+        />
       </div>
     );
   }

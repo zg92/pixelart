@@ -1,0 +1,20 @@
+.upload-button,
+.upload-button-wrapper {
+    height: 3rem;
+    background: #E29578;
+    border: #bb603f;;
+    margin-top: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: black 2px 2px 2px;
+    font-size: .8rem;
+    width: 99%;
+}
+
+.upload-button-wrapper:hover,
+.upload-button:hover
+ {
+    cursor: pointer;
+    background: #ffddd2;
+}
