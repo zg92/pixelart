@@ -2,9 +2,9 @@ import "./upload-canvas.css";
 import { useState, useContext, useRef, useEffect } from "react";
 import Grid from "../../grid-components/grid/grid";
 import { PhotoContext } from "../../../../context/photo.context";
-import useWindowDimensions from "../../../../customHooks/getWindowWidth";
 import UploadCanvasButtons from "../upload-canvas-buttons/upload-canvas-buttons";
 import ImageWrapper from "../../image-wrapper/image-wrapper";
+import useGridDimensions from "../../../../customHooks/getGridWidth";
 
 const UploadCanvas = () => {
   const { photoSettings, setPhotoSettings } = useContext(PhotoContext);
@@ -13,7 +13,7 @@ const UploadCanvas = () => {
   const imageRef = useRef();
   const gridWrapperRef = useRef();
 
-  const gridWidth = useWindowDimensions() * 0.7 * 0.8;
+  const gridBoundry = useGridDimensions() * 0.4;
 
   // logic for adding dragging functionality for adjusting image position
   useEffect(() => {
@@ -29,17 +29,17 @@ const UploadCanvas = () => {
   }, []);
 
   const imageLimitCheck = async (currentLeft, currentTop) => {
-    if (parseInt(currentLeft) >= gridWidth * 0.4) {
-      imageRef.current.style.left = gridWidth * 0.4 + "px";
+    if (parseInt(currentLeft) >= gridBoundry) {
+      imageRef.current.style.left = gridBoundry + "px";
     }
-    if (parseInt(currentLeft) <= -1 * gridWidth * 0.4) {
-      imageRef.current.style.left = -1 * gridWidth * 0.4 + "px";
+    if (parseInt(currentLeft) <= -gridBoundry) {
+      imageRef.current.style.left = -gridBoundry + "px";
     }
-    if (parseInt(currentTop) >= gridWidth * 0.4) {
-      imageRef.current.style.top = gridWidth * 0.4 + "px";
+    if (parseInt(currentTop) >= gridBoundry) {
+      imageRef.current.style.top = gridBoundry + "px";
     }
-    if (parseInt(currentTop) <= -1 * gridWidth * 0.4) {
-      imageRef.current.style.top = -1 * gridWidth * 0.4 + "px";
+    if (parseInt(currentTop) <= -gridBoundry) {
+      imageRef.current.style.top = -gridBoundry + "px";
     }
     setPhotoSettings({
       ...photoSettings,
@@ -56,6 +56,7 @@ const UploadCanvas = () => {
     imageRef.current.style.top = currentTop;
     await imageLimitCheck(currentLeft, currentTop);
   };
+  // end of image dragging logic
 
   return (
     <div className="upload-wrapper">
