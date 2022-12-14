@@ -1,15 +1,17 @@
 import { forwardRef } from "react";
 import { useContext } from "react";
 import { PhotoContext } from "../../../context/photo.context";
-import { ShowPhotoMenuContext } from "../../../context/show-photo-menu.context";
+import { ShowHideImageContext } from "../../../context/show-hide-image.context";
 import useWindowDimensions from "../../../customHooks/getWindowWidth";
 import "./image-wrapper.css";
 
 const ImageWrapper = forwardRef(({ size }, ref) => {
   const gridWidth = useWindowDimensions() * 0.7 * 0.8;
-  const { photoMenuState } = useContext(ShowPhotoMenuContext);
+  const { showImage } = useContext(ShowHideImageContext);
   const { photoSettings, photoSize, samplePhotoUpload } =
     useContext(PhotoContext);
+
+  console.log(samplePhotoUpload, photoSettings.currentPhoto);
 
   return (
     <div
@@ -20,27 +22,26 @@ const ImageWrapper = forwardRef(({ size }, ref) => {
         height: gridWidth + "px",
       }}
     >
-      {photoMenuState ? (
-        <img
-          src={
-            samplePhotoUpload === null
-              ? photoSettings.currentPhoto
-              : samplePhotoUpload
-          }
-          style={{
-            top: photoSettings.topPosition,
-            left: photoSettings.leftPosition,
-            height: gridWidth + photoSize * 50 + "px",
-            width: gridWidth + photoSize * 50 + "px",
-            maxHeight: 800 + photoSize * 50 + "px",
-            maxWidth: 800 + photoSize * 50 + "px",
-          }}
-          className="img-overlay"
-          alt=""
-          draggable="false"
-          ref={ref}
-        />
-      ) : null}
+      <img
+        src={
+          samplePhotoUpload === null
+            ? photoSettings.currentPhoto
+            : samplePhotoUpload
+        }
+        style={{
+          top: photoSettings.topPosition,
+          left: photoSettings.leftPosition,
+          height: gridWidth + photoSize * 50 + "px",
+          width: gridWidth + photoSize * 50 + "px",
+          maxHeight: 800 + photoSize * 50 + "px",
+          maxWidth: 800 + photoSize * 50 + "px",
+          display: showImage ? "flex" : "none",
+        }}
+        className="img-overlay"
+        alt=""
+        draggable="false"
+        ref={ref}
+      />
     </div>
   );
 });

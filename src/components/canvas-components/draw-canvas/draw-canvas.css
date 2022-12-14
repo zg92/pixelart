@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: center;
     position: relative;
-
+    background-color: white;
 }
 
 .draw-grid-image-wrapper {
@@ -17,6 +17,4 @@
 .draw-grid-wrapper {
     z-index: 1;
     position: relative;
-
-
 }

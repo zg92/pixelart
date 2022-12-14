@@ -3,13 +3,13 @@ import { forwardRef } from "react";
 import { useContext } from "react";
 import { SetMenuContext } from "../../../../context/menu-selection.context";
 import { PhotoContext } from "../../../../context/photo.context";
-import { ShowPhotoMenuContext } from "../../../../context/show-photo-menu.context";
+import { ShowHideImageContext } from "../../../../context/show-hide-image.context";
 import useWindowDimensions from "../../../../customHooks/getWindowWidth";
 import "./upload-canvas-buttons.css";
 
 const UploadCanvasButtons = forwardRef(
   ({ showGridOverlay, setShowGridOverlay }, ref) => {
-    const { setPhotoMenuState } = useContext(ShowPhotoMenuContext);
+    const { setShowImage } = useContext(ShowHideImageContext);
     const {
       photoSettings,
       setPhotoSettings,
@@ -26,14 +26,12 @@ const UploadCanvasButtons = forwardRef(
     };
 
     const submitPhoto = () => {
-      if (photoSettings.samplePhotoUpload !== null) {
-        setPhotoSettings({
-          ...photoSettings,
-          currentPhoto: photoSettings.samplePhotoUpload,
-        });
-      }
+      setPhotoSettings({
+        ...photoSettings,
+        currentPhoto: photoSettings.samplePhotoUpload,
+      });
       setMenuSelect("draw");
-      setPhotoMenuState(true);
+      setShowImage(true);
     };
 
     const adjustImageSize = (e) => {

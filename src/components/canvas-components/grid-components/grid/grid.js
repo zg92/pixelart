@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react";
 import { NewPhotoDimensionContext } from "../../../../context/new-photo-dimension.context";
 import generateGrid from "../../../utilities/grid-utilities";
 import { ScreenshotContext } from "../../../../context/screenshot.context";
-import html2canvas from "html2canvas";
+import domtoimage from "dom-to-image";
 import downloadjs from "downloadjs";
 import useWindowDimensions from "../../../../customHooks/getWindowWidth";
 import GridItem from "../grid-items/grid-item";
@@ -23,31 +23,31 @@ const Grid = forwardRef(({ functionality, mode, hideGrid }, gridWrapperRef) => {
 
   // Screenshot logic
   const takeScreenshot = async () => {
-    const canvas = await html2canvas(gridWrapperRef.current, {
-      allowTaint: true,
-    });
+    const canvas = await domtoimage.toPng(gridWrapperRef.current);
     downloadImage(canvas);
   };
 
   const downloadImage = async (canvas) => {
-    const imageData = canvas.toDataURL("image/png", 1.0);
-    downloadjs(imageData, "download.png", "image/png");
+    downloadjs(canvas, "download.png", "image/png");
   };
 
-  const updateGridChildren = (children, update) => {
+  const updateGridChildren = async (children, update) => {
     for (let node of children) {
       node.style.border = update["border"];
     }
   };
 
+  const screenshotProcess = async () => {
+    const gridItems = gridWrapperRef.current.children;
+    await updateGridChildren(gridItems, gridAppearence[true]);
+    await takeScreenshot();
+    await updateGridChildren(gridItems, gridAppearence[false]);
+    await setCreateScreenshot(false);
+  };
+
   useEffect(() => {
     if (createScreenshot === true) {
-      const gridItems = gridWrapperRef.current.children;
-      updateGridChildren(gridItems, gridAppearence[true]);
-      takeScreenshot();
-
-      updateGridChildren(gridItems, gridAppearence[false]);
-      setCreateScreenshot(false);
+      screenshotProcess();
     }
   }, [createScreenshot]);
 
@@ -60,12 +60,12 @@ const Grid = forwardRef(({ functionality, mode, hideGrid }, gridWrapperRef) => {
       style={{
         gridTemplateColumns: `repeat(${dimensionTemplate}, ${
           100 / dimensionTemplate
-        }%)`,
+        }%`,
         gridTemplateRows: `repeat(${dimensionTemplate}, ${
           100 / dimensionTemplate
         }%)`,
-        width: gridWidth + "px",
-        height: gridWidth + "px",
+        width: gridWidth - 1 + "px",
+        height: gridWidth - 1 + "px",
       }}
     >
       {generateGrid(dimension).map((gridItemName) => (

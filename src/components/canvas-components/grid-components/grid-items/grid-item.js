@@ -22,10 +22,10 @@ const GridItem = ({
       }}
       style={{
         ...gridAppearence[hideGrid],
-        height: gridWidth / dimensionTemplate + "px",
-        width: gridWidth / dimensionTemplate + "px",
-        maxHeight: 800 / dimensionTemplate + "px",
-        maxWidth: 800 / dimensionTemplate + "px",
+        // height: gridWidth / dimensionTemplate + "px",
+        // width: gridWidth / dimensionTemplate + "px",
+        maxHeight: gridWidth / dimensionTemplate + "px",
+        maxWidth: gridWidth / dimensionTemplate + "px",
       }}
     ></div>
   );

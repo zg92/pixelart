@@ -1,11 +1,10 @@
 import "./canvas-options.css";
-import { ShowPhotoMenuContext } from "../../../context/show-photo-menu.context";
+import { ShowHideImageContext } from "../../../context/show-hide-image.context";
 import { useContext } from "react";
 import { ScreenshotContext } from "../../../context/screenshot.context";
 
 const CanvasOptions = ({ menuSelect, setMenuSelect }) => {
-  const { photoMenuState, setPhotoMenuState } =
-    useContext(ShowPhotoMenuContext);
+  const { showImage, setShowImage } = useContext(ShowHideImageContext);
   const { createScreenshot, setCreateScreenshot } =
     useContext(ScreenshotContext);
 
@@ -17,7 +16,7 @@ const CanvasOptions = ({ menuSelect, setMenuSelect }) => {
   };
 
   const activateOverlay = () => {
-    photoMenuState ? setPhotoMenuState(false) : setPhotoMenuState(true);
+    showImage ? setShowImage(false) : setShowImage(true);
   };
 
   const takeScreenshot = () => {
@@ -45,13 +44,14 @@ const CanvasOptions = ({ menuSelect, setMenuSelect }) => {
         <div
           className="left-button"
           onClick={() => {
+            setShowImage(true);
             menuToggle("upload");
           }}
         >
           Set Trace Image
         </div>
         <div className="left-button" onClick={activateOverlay}>
-          {photoMenuState ? "Hide" : "Show"} Trace Image
+          {showImage ? "Hide" : "Show"} Trace Image
         </div>
       </div>
     </div>
