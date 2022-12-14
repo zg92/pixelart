@@ -2,11 +2,10 @@ import { forwardRef } from "react";
 import { useContext } from "react";
 import { PhotoContext } from "../../../context/photo.context";
 import { ShowHideImageContext } from "../../../context/show-hide-image.context";
-import useWindowDimensions from "../../../customHooks/getWindowWidth";
+import useGridDimensions from "../../../customHooks/getGridWidth";
 import "./image-wrapper.css";
 
 const ImageWrapper = forwardRef((props, ref) => {
-  const gridWidth = useWindowDimensions() * 0.7 * 0.8;
   const { showImage } = useContext(ShowHideImageContext);
   const { photoSettings, photoSize, samplePhotoUpload } =
     useContext(PhotoContext);
@@ -16,8 +15,8 @@ const ImageWrapper = forwardRef((props, ref) => {
       className="img-wrapper"
       draggable="false"
       style={{
-        width: gridWidth + "px",
-        height: gridWidth + "px",
+        width: useGridDimensions() + "px",
+        height: useGridDimensions() + "px",
       }}
     >
       <img
@@ -29,8 +28,8 @@ const ImageWrapper = forwardRef((props, ref) => {
         style={{
           top: photoSettings.topPosition,
           left: photoSettings.leftPosition,
-          height: gridWidth + photoSize * 50 + "px",
-          width: gridWidth + photoSize * 50 + "px",
+          height: useGridDimensions() + photoSize * 50 + "px",
+          width: useGridDimensions() + photoSize * 50 + "px",
           maxHeight: 800 + photoSize * 50 + "px",
           maxWidth: 800 + photoSize * 50 + "px",
           display: showImage ? "flex" : "none",

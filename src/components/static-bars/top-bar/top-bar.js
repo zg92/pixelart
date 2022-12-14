@@ -8,13 +8,15 @@ const TopBar = () => {
   const windowWidth = useWindowDimensions();
 
   useEffect(() => {
-    setWidth(Array(Math.floor(windowWidth / 50)));
+    setWidth(Array(Math.floor(windowWidth / 50)).fill(0));
   }, [windowWidth]);
 
   return (
     <div className="top-menu-wrapper">
       <img className="top-menu-img" src={brickTexture} alt="" />
-      {width.fill(<img className="top-menu-img" src={brickTexture} alt="" />)}
+      {width.map((_, i) => (
+        <img className="top-menu-img" src={brickTexture} alt="" key={i} />
+      ))}
       <img className="top-menu-img" src={brickTexture} alt="" />
     </div>
   );

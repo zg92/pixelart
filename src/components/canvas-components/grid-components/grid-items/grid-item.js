@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { GridDimensionContext } from "../../../../context/grid-dimension.context";
-import useWindowDimensions from "../../../../customHooks/getWindowWidth";
+import useGridDimensions from "../../../../customHooks/getGridWidth";
 import "./grid-item.css";
 
 const GridItem = ({
@@ -8,24 +8,19 @@ const GridItem = ({
   functionality,
   hideGrid,
   gridAppearence,
+  i,
 }) => {
   const { dimensionTemplate } = useContext(GridDimensionContext);
 
-  const gridWidth = useWindowDimensions() * 0.7 * 0.8;
-
   return (
     <div
-      key={gridItemName}
+      key={i}
       className={`gridItem ${gridItemName}`}
-      onClick={(e) => {
-        functionality(e);
-      }}
+      onMouseDown={(e) => functionality(e)}
       style={{
         ...gridAppearence[hideGrid],
-        // height: gridWidth / dimensionTemplate + "px",
-        // width: gridWidth / dimensionTemplate + "px",
-        maxHeight: gridWidth / dimensionTemplate + "px",
-        maxWidth: gridWidth / dimensionTemplate + "px",
+        maxHeight: useGridDimensions() / dimensionTemplate + "px",
+        maxWidth: useGridDimensions() / dimensionTemplate + "px",
       }}
     ></div>
   );

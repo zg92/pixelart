@@ -8,15 +8,15 @@ const BottomBar = () => {
   const windowWidth = useWindowDimensions();
 
   useEffect(() => {
-    setWidth(Array(Math.floor(windowWidth / 50)));
+    setWidth(Array(Math.floor(windowWidth / 50)).fill(0));
   }, [windowWidth]);
 
   return (
     <div className="bottom-menu-wrapper">
       <img className="bottom-menu-img" src={backgroundTexture} alt="" />
-      {width.fill(
-        <img className="bottom-menu-img" src={backgroundTexture} alt="" />
-      )}
+      {width.map((_, i) => (
+        <img className="bottom-menu-img" src={backgroundTexture} alt="" key={i} />
+      ))}
       <img className="bottom-menu-img" src={backgroundTexture} alt="" />
     </div>
   );

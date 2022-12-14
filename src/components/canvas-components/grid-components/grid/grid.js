@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import "./grid.css";
 import { useContext, useEffect } from "react";
 import { GridDimensionContext } from "../../../../context/grid-dimension.context";
@@ -5,17 +6,15 @@ import generateGrid from "../../../utilities/grid-utilities";
 import { ScreenshotContext } from "../../../../context/screenshot.context";
 import domtoimage from "dom-to-image";
 import downloadjs from "downloadjs";
-import useWindowDimensions from "../../../../customHooks/getWindowWidth";
 import GridItem from "../grid-items/grid-item";
 import { forwardRef } from "react";
+import useGridDimensions from "../../../../customHooks/getGridWidth";
 
 const Grid = forwardRef(({ functionality, mode, hideGrid }, gridWrapperRef) => {
   const { convertedDimension, dimensionTemplate } =
     useContext(GridDimensionContext);
   const { createScreenshot, setCreateScreenshot } =
     useContext(ScreenshotContext);
-
-  const gridWidth = useWindowDimensions() * 0.7 * 0.8;
 
   const gridAppearence = {
     true: { border: "0px solid white" },
@@ -65,17 +64,18 @@ const Grid = forwardRef(({ functionality, mode, hideGrid }, gridWrapperRef) => {
         gridTemplateRows: `repeat(${dimensionTemplate}, ${
           100 / dimensionTemplate
         }%)`,
-        width: gridWidth - 1 + "px",
-        height: gridWidth - 1 + "px",
+        width: useGridDimensions() - 1 + "px",
+        height: useGridDimensions() - 1 + "px",
       }}
     >
-      {generateGrid(convertedDimension).map((gridItemName) => (
+      {generateGrid(convertedDimension).map((gridItemName, i) => (
         <GridItem
           gridItemName={gridItemName}
           functionality={functionality}
           mode={mode}
           hideGrid={hideGrid}
           gridAppearence={gridAppearence}
+          key={i}
         />
       ))}
     </div>
