@@ -1,0 +1,16 @@
+.upload-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: fit-content;
+    overflow: hidden;
+}
+
+.upload-grid-wrapper {
+    position: relative;
+    z-index: 1;
+    background: white;
+}
+

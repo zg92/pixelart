@@ -1,0 +1,13 @@
+.bottom-menu-wrapper {
+ /* height: 50px; */
+ width: 100%;
+ overflow: hidden;
+ display: flex;
+ justify-content: center;
+}
+
+.bottom-menu-img {
+    height: 60px;
+    width: 600px;
+
+}

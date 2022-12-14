@@ -1,0 +1,17 @@
+.color-picker-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.color {
+    margin-top: .5rem;
+}
+
+.color-selector-title {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}

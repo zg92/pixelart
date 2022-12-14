@@ -1,0 +1,48 @@
+.option-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.left-button {
+    width: 80%;
+    height: 3rem;
+    background: #E29578;
+    border: #bb603f;;
+    margin-top: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: black 2px 2px 2px;
+}
+
+.left-button:hover {
+    cursor: pointer;
+    background: #ffddd2;
+}
+
+.canvas-buttons-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.overlay-buttons-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: .5rem;
+    align-items: center;
+}
+
+.buttons-set-title {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}

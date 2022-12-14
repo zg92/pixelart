@@ -1,0 +1,17 @@
+.img-wrapper {
+    max-height: 800px;
+    max-width: 800px;
+    overflow: hidden;
+    position: absolute;
+    z-index: 2;
+    opacity: 60%;
+    top: 0;
+}
+
+.img-overlay {
+    position: absolute;
+    top: 0;
+    max-height: 800px;
+    max-width: 800px;
+}
+

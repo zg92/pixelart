@@ -1,0 +1,22 @@
+.draw-wrapper {
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+
+}
+
+.draw-grid-image-wrapper {
+    position: absolute;
+    top: 0;
+    z-index: 0;
+}
+
+
+.draw-grid-wrapper {
+    z-index: 1;
+    position: relative;
+
+
+}

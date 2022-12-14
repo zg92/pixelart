@@ -1,0 +1,46 @@
+.new-photo-menu-wrapper {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+background-color: #EDF6F9;
+height: 60%;
+width: 80%;
+margin-top: 5rem;
+border-radius: 1.5rem;
+box-shadow: rgba(0, 0, 0, 0.678) 2px 5px 5px;
+}
+
+.new-photo-input-label {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.new-photo-input-dimensions {
+    margin-bottom: 15px;
+    height: 1.5em;
+}
+
+
+.submit-button {
+    width: 40%;
+    height: 3rem;
+    background: #83C5BE;
+    margin-top: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: black 2px 2px 2px;
+}
+
+.submit-button:hover {
+    cursor: pointer;
+    background: #006D77;
+}
+
+.show-photo-button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
