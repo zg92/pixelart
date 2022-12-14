@@ -2,9 +2,11 @@ import React from "react";
 import { forwardRef } from "react";
 import { useContext } from "react";
 import { SetMenuContext } from "../../../../context/menu-selection.context";
+import { GridDimensionContext } from "../../../../context/grid-dimension.context";
 import { PhotoContext } from "../../../../context/photo.context";
 import { ShowHideImageContext } from "../../../../context/show-hide-image.context";
 import useWindowDimensions from "../../../../customHooks/getWindowWidth";
+import mushroom from "../../../../assets/mushroom.png";
 import "./upload-canvas-buttons.css";
 
 const UploadCanvasButtons = forwardRef(
@@ -16,10 +18,19 @@ const UploadCanvasButtons = forwardRef(
       photoSize,
       setPhotoSize,
       setSamplePhotoUpload,
+      samplePhotoUpload,
     } = useContext(PhotoContext);
-    const { setMenuSelect } = useContext(SetMenuContext);
+    const { setMenuSelect, menuSelect } = useContext(SetMenuContext);
+    const { setDimension, dimension } = useContext(GridDimensionContext);
 
     const gridWidth = useWindowDimensions() * 0.7 * 0.8;
+
+    const menuToggle = (menu) => {
+      setMenuSelect(menu);
+      if (menu === menuSelect) {
+        setMenuSelect("draw");
+      }
+    };
 
     const setSamplePhoto = (e) => {
       setSamplePhotoUpload(URL.createObjectURL(e.target.files[0]));
@@ -28,7 +39,7 @@ const UploadCanvasButtons = forwardRef(
     const submitPhoto = () => {
       setPhotoSettings({
         ...photoSettings,
-        currentPhoto: photoSettings.samplePhotoUpload,
+        currentPhoto: samplePhotoUpload,
       });
       setMenuSelect("draw");
       setShowImage(true);
@@ -37,6 +48,11 @@ const UploadCanvasButtons = forwardRef(
     const adjustImageSize = (e) => {
       setPhotoSize(e.target.value);
     };
+
+    const adjustGridSize = (e) => {
+      setDimension(e.target.value);
+    };
+
     const showGrid = () => {
       showGridOverlay ? setShowGridOverlay(false) : setShowGridOverlay(true);
     };
@@ -48,28 +64,66 @@ const UploadCanvasButtons = forwardRef(
         style={{ width: gridWidth }}
       >
         <div className="upload-button-wrapper">
-          Upload New Image
+          Upload New Trace Image
           <input
             className="upload-button upload-file"
             type="file"
             onChange={setSamplePhoto}
           />
         </div>
-        <div className="upload-button" onClick={submitPhoto}>
-          Save Uploaded Image
+        <div
+          className="upload-button"
+          onClick={
+            samplePhotoUpload === mushroom ||
+            !samplePhotoUpload ||
+            photoSettings.currentPhoto === samplePhotoUpload
+              ? null
+              : submitPhoto
+          }
+          style={{
+            background:
+              samplePhotoUpload === null ||
+              samplePhotoUpload === photoSettings.currentPhoto
+                ? "grey"
+                : "#E29578",
+          }}
+        >
+          Save Uploaded Trace Image
         </div>
+
         <div className="upload-button" onClick={showGrid}>
-          Grid Overlay
+          {showGridOverlay ? "Show" : "Hide"} Grid Overlay
         </div>
-        <div className="show-photo-size-wrapper">
-          <span>Adjust Size</span>
+
+        <div
+          className="upload-button"
+          onClick={() => {
+            menuToggle("draw");
+          }}
+        >
+          Save and Return to Draw
+        </div>
+
+        <div className="slider-wrapper">
+          <span className="slider-label">Adjust Image Size</span>
           <input
             type="range"
             min="-3"
             max="3"
             value={photoSize}
-            className="show-photo-size-slider"
+            className="slider"
             onChange={adjustImageSize}
+          />
+        </div>
+        <div className="slider-wrapper">
+          <span className="slider-label">Adjust Grid Size</span>
+          <input
+            type="range"
+            min="0"
+            max="19"
+            value={dimension}
+            className="slider"
+            onChange={adjustGridSize}
           />
         </div>
       </div>

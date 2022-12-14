@@ -5,13 +5,11 @@ import { ShowHideImageContext } from "../../../context/show-hide-image.context";
 import useWindowDimensions from "../../../customHooks/getWindowWidth";
 import "./image-wrapper.css";
 
-const ImageWrapper = forwardRef(({ size }, ref) => {
+const ImageWrapper = forwardRef((props, ref) => {
   const gridWidth = useWindowDimensions() * 0.7 * 0.8;
   const { showImage } = useContext(ShowHideImageContext);
   const { photoSettings, photoSize, samplePhotoUpload } =
     useContext(PhotoContext);
-
-  console.log(samplePhotoUpload, photoSettings.currentPhoto);
 
   return (
     <div

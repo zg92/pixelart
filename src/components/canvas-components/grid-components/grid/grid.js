@@ -1,6 +1,6 @@
 import "./grid.css";
 import { useContext, useEffect } from "react";
-import { NewPhotoDimensionContext } from "../../../../context/new-photo-dimension.context";
+import { GridDimensionContext } from "../../../../context/grid-dimension.context";
 import generateGrid from "../../../utilities/grid-utilities";
 import { ScreenshotContext } from "../../../../context/screenshot.context";
 import domtoimage from "dom-to-image";
@@ -10,7 +10,8 @@ import GridItem from "../grid-items/grid-item";
 import { forwardRef } from "react";
 
 const Grid = forwardRef(({ functionality, mode, hideGrid }, gridWrapperRef) => {
-  const { dimension, dimensionTemplate } = useContext(NewPhotoDimensionContext);
+  const { convertedDimension, dimensionTemplate } =
+    useContext(GridDimensionContext);
   const { createScreenshot, setCreateScreenshot } =
     useContext(ScreenshotContext);
 
@@ -68,7 +69,7 @@ const Grid = forwardRef(({ functionality, mode, hideGrid }, gridWrapperRef) => {
         height: gridWidth - 1 + "px",
       }}
     >
-      {generateGrid(dimension).map((gridItemName) => (
+      {generateGrid(convertedDimension).map((gridItemName) => (
         <GridItem
           gridItemName={gridItemName}
           functionality={functionality}

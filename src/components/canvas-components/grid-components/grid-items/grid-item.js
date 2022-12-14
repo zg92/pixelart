@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { NewPhotoDimensionContext } from "../../../../context/new-photo-dimension.context";
+import { GridDimensionContext } from "../../../../context/grid-dimension.context";
 import useWindowDimensions from "../../../../customHooks/getWindowWidth";
 import "./grid-item.css";
 
@@ -9,7 +9,7 @@ const GridItem = ({
   hideGrid,
   gridAppearence,
 }) => {
-  const { dimensionTemplate } = useContext(NewPhotoDimensionContext);
+  const { dimensionTemplate } = useContext(GridDimensionContext);
 
   const gridWidth = useWindowDimensions() * 0.7 * 0.8;
 
